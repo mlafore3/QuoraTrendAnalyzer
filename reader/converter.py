@@ -18,7 +18,7 @@ class dataConverter:
         
         #Parse column types 
     def sliceNdice(self):
-        for i in range(enumerate(self.colnames)):
+        for i in range(len(self.colnames)):
             if self.datatype[i].find("ID") == 0:
                 self.convertID.append(i)
             elif self.datatype[i].find("CONT") == 0:
@@ -44,7 +44,7 @@ class dataConverter:
         #print(((self.convertSensitive>self.convertID)-(self.convertSensitive<self.convertID)))        
 
     #convert to sensitive should be first 
-    def categoricalEncoder(self):
+    #def categoricalEncoder(self):
     
         for col in self.convertID:
             for row in range(len(self.indexer)):
