@@ -1,7 +1,7 @@
 import sys
 import os
 from reader import parser
-from reader import converter
+from reader import convert
 from analysis import analyze
 
 
@@ -12,8 +12,9 @@ def main(filepath):
     print("Your file was found!")
     cleanFile = parser.parseClass(filepath)
     #file = cleanFile.parseData()
-    plot = analyze.visualAnalysis(cleanFile.parseData())
-    plot.plotCol()
+    #plot = analyze.visualAnalysis(cleanFile.parseData())
+    co = convert.convertClass(cleanFile.parseData())
+    co.con()
     #encodeFile = converter.dataConverter(file[0],file[1],file[2], file[3])
     #encodeFile = encodeFile.sliceNdice()
     #print(encodeFile)

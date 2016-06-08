@@ -3,7 +3,7 @@ import csv
 
 class dataConverter:
 
-    def __init__(self, colnames, datatype, indexer, data):
+    def __init__(self, data):
         self.colnames = colnames
         self.datatype = datatype
         self.indexer = indexer

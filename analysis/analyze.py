@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import numpy as np
 from pandas.tools.plotting import radviz
-#import seaborn as sns 
+import seaborn as sns 
 
 class visualAnalysis:
     
@@ -14,10 +14,15 @@ class visualAnalysis:
         #print(self.data)
     
     def plotCol(self):
-        ID = self.data.xs('ID', axis=1, level=1).LastName.value_counts()
+        pl = sns.countplot(x=self.data.xs('ID', axis=1, level=1).LastName)
+        plt.show(pl[:5])
+        #plt.show()
+        
+        #ID = self.data.xs('ID', axis=1, level=1).MiddleInitial.value_counts()
         #ID = ID[:5]
-        plt.plot(ID)
-        plt.show()
+        #print(ID)
+        #plt.plot(ID)
+        #plt.show()
         #self.data.xs('ID', axis=1, level=1).groupby('LastName').size().plot(kind='bar').show()
         #plt.show()
         #print(self.data.xs('CAT', axis=1, level=1))
