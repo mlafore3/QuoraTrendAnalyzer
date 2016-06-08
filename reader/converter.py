@@ -16,6 +16,7 @@ class dataConverter:
         
         #Parse column types 
     def sliceNdice(self):
+        
         for i in range(len(self.colnames)):
             if self.datatype[i].find("ID") == 0:
                 self.convertID.append(i)
