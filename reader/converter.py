@@ -4,34 +4,40 @@ import numpy as np
 
 class dataConverter:
 
-    def __init__(self, colnames, datatype, data):
+    def __init__(self, colnames, datatype, indexer):
         self.colnames = colnames
         self.datatype = datatype
-        self.data = np.copy(data)
-        #print(self.data)
+        self.indexer = indexer
+        #print("dataConverter init", self.data)
         #self.data = data
+        self.convertID = []
+        self.convertTime = []
+        self.convertCat = []
+        self.convertCont = []
+        self.convertSensitive = []
         
         #Parse column types 
-        for i in range(parseData=nameLength):
-            if types[i].find("ID") == 0:
+    def sliceNdice(self):
+        for i in range(enumerate(self.colnames)):
+            if self.datatype[i].find("ID") == 0:
                 self.convertID.append(i)
-            elif types[i].find("CONT") == 0:
+            elif self.datatype[i].find("CONT") == 0:
                 self.convertCont.append(i)
-            elif types[i].find("TIME") == 0:
+            elif self.datatype[i].find("TIME") == 0:
                self.convertTime.append(i)
             else:
                 self.convertCat.append(i)
-        print("DataFile Column Order: ", types)
+        print("DataFile Column Order: ", self.datatype)
         print("ID", self.convertID)
         print("CONT", self.convertCont)
         print("TIME", self.convertTime)
         print("Cat", self.convertCat)
         
         #Grab sensitives
-        for i in range(nameLength):
-            if types[i].find("CAT/SENSITIVE")==0:
+        for i in range(len(self.colnames)):
+            if self.datatype[i].find("CAT/SENSITIVE")==0:
                 self.convertSensitive.append(i)
-            if types[i].find("CONT/SENSITIVE")==0:
+            if self.datatype[i].find("CONT/SENSITIVE")==0:
                 self.convertSensitive.append(i)
         print("Sensitive", self.convertSensitive)
         
