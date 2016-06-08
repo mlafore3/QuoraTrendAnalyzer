@@ -13,6 +13,7 @@ def main(filepath):
     cleanFile = parser.parseClass(filepath)
     #file = cleanFile.parseData()
     #plot = analyze.visualAnalysis(cleanFile.parseData())
+    #plot.plotCol()
     co = convert.convertClass(cleanFile.parseData())
     co.con()
     #encodeFile = converter.dataConverter(file[0],file[1],file[2], file[3])

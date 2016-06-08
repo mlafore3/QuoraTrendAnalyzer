@@ -14,8 +14,8 @@ class visualAnalysis:
         #print(self.data)
     
     def plotCol(self):
-        pl = sns.countplot(x=self.data.xs('ID', axis=1, level=1).LastName)
-        plt.show(pl[:5])
+        pl = sns.countplot(x=self.data.xs('ID', axis=1, level=1).MiddleInitial)
+        plt.show(pl)
         #plt.show()
         
         #ID = self.data.xs('ID', axis=1, level=1).MiddleInitial.value_counts()

@@ -28,7 +28,7 @@ class parseClass:
             
             for row in csvData:
                 self.data.append(row)
-            self.data = pd.DataFrame(self.data,columns=index)
+            self.data = pd.DataFrame(self.data,columns=index, )
             self.data = self.data.rename(columns=lambda x: x.replace(" ", ""))
             #print(self.data)
             
