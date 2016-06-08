@@ -1,5 +1,3 @@
-from sklearn.preprocessing import LabelEncoder
-from sklearn.pipeline import Pipeline
 import numpy as np
 
 class dataConverter:

@@ -6,7 +6,7 @@ from reader import converter
 
 def main(filepath):
     
-    assert os.path.exists(filepath), "I did not find the file at, "+str(filepath)
+    assert os.path.exists(filepath), "I did not find the file at, "+str(filepath) + "Ex. ~/path_to_file.csv"
     #f = open(filepath,'rb')
     print("Hooray we found your file!")
     cleanFile = parser.parseClass(filepath)
