@@ -1,13 +1,13 @@
 import numpy as np
+import csv
 
 class dataConverter:
 
-    def __init__(self, colnames, datatype, indexer):
+    def __init__(self, colnames, datatype, indexer, data):
         self.colnames = colnames
         self.datatype = datatype
         self.indexer = indexer
-        #print("dataConverter init", self.data)
-        #self.data = data
+        self.data = data
         self.convertID = []
         self.convertTime = []
         self.convertCat = []
@@ -26,6 +26,7 @@ class dataConverter:
                self.convertTime.append(i)
             else:
                 self.convertCat.append(i)
+                
         print("DataFile Column Order: ", self.datatype)
         print("ID", self.convertID)
         print("CONT", self.convertCont)
@@ -38,38 +39,48 @@ class dataConverter:
                 self.convertSensitive.append(i)
             if self.datatype[i].find("CONT/SENSITIVE")==0:
                 self.convertSensitive.append(i)
+                
         print("Sensitive", self.convertSensitive)
         
-        #print(((self.convertSensitive>self.convertID)-(self.convertSensitive<self.convertID)))        
+    #Should convert sensitive first
+        with open("output.csv", 'w') as f:
+            writer = csv.writer(f)
+         
+            #print(self.data[row::]for row in self.data)
+            #for row in self.data:
+                #print(row[0])
+            for col in self.convertID:
+                for row in range(len(self.indexer)):
+                    outputID = "".join(item[0] for item in self.indexer[row][col].split())
+                    if outputID is not "":
+                        outputID = ord(outputID[0])
+                    else:
+                        outputID == np.nan
+                    #writer.writerows(row)
 
-    #convert to sensitive should be first 
-    #def categoricalEncoder(self):
-    
-        for col in self.convertID:
-            for row in range(len(self.indexer)):
-                outputID = "".join(item[0] for item in self.indexer[row][col].split())
-                if outputID is not "":
-                    outputID = ord(outputID[0])
-                    #print(outputID)
-                else:
-                    outputID == np.nan
                     
-
-        for col in self.convertCont:
-            for row in range(len(self.indexer)):
-                outputCont = "".join(item for item in self.indexer[row][col].split())
-                if outputCont is not "":
-                    outputCont = ord(outputCont[0])
-                else:
-                    outputCont == np.nan
-                    #print(output)
-
-        for col in self.convertCat:
-            for row in range(len(self.indexer)):
-                outputCat = "".join(item for item in self.indexer[row][col].split())
-                #print(outputCat)
-                if outputCat is not "":
-                    outputCat = ord(outputCat[0])
-                else: 
-                 outputCat == np.nan
-                    #print(output)
+            for col in self.convertCont:
+                for row in range(len(self.indexer)):
+                    outputCont = "".join(item[0] for item in self.indexer[row][col].split())
+                    if outputCont is not "":
+                        outputCont = float(outputCont[0])
+                    else:
+                        outputCont == np.nan
+                    #writer.writerows(row)
+    
+            for col in self.convertCat:
+                for row in range(len(self.indexer)):
+                    outputCat = "".join(item[0] for item in self.indexer[row][col].split())
+                    if outputCat is not "":
+                        outputCat = ord(outputCat[0])
+                    else: 
+                        outputCat == np.nan
+                    #writer.writerows(row)
+        
+            for col in self.convertTime:
+                for row in range(len(self.indexer)):
+                    outputTime = "".join(item[0] for item in self.indexer[row][col].split())
+                    #writer.writerows(row)
+            
+       # for i, item in enumerate(self.colnames):
+        #    print(outputCat)
