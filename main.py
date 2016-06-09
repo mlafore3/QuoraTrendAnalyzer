@@ -11,7 +11,7 @@ def main(filepath):
     print("Your file was found!")
     cleanFile = parser.parseClass(filepath)
     file = cleanFile.parseData()
-    print(file)
+    #print(file)
     #plot = analyze.visualAnalysis(cleanFile.parseData())
     #plot.plotCol()
     #co = convert.convertClass(cleanFile.parseData())
