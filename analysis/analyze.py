@@ -7,13 +7,13 @@ import numpy as np
 from pandas.tools.plotting import radviz
 import seaborn as sns 
 
-class visualAnalysis:
+class analysis:
     
     def __init__(self, data):
         self.data = data
         #print(self.data)
     
-    def plotCol(self):
+    def plotCol(self, ):
         pl = sns.countplot(x=self.data.xs('ID', axis=1, level=1).MiddleInitial)
         plt.show(pl)
         #plt.show()
