@@ -133,33 +133,16 @@ class parseClass:
         print(show)
         temp = input("Put the data column you want sorted by as your first argument ! ")
         temp = temp.split()
-        #print("tupules", self.tuples)
-        #test = [self.tuples for temp[0] in self.tuples]
-        #test = [temp for self.tuples in temp]
-        #lis=[]
-        #for self.tuples in temp:
-            #lis.append(self.tuples)
         
         if list(set(temp).intersection(show)):
+            
             datCopy = self.data
             datCopy= datCopy.rename(columns=lambda x: x.replace(" ", "")) 
             cheese=datCopy[temp]
-            pizza = cheese[temp].columns.get_level_values(0)
             pizza = cheese.columns.values
-            #temp1 = datCopy.xs(temp, axis=1)
-            #print(temp)
             pizza = pizza.tolist()
-                
             cot = cheese.sort_values(by=pizza, ascending=True)
             print(cot)
-            #for set(pizza) in set(self.tuples):
-                #print(pizza)
-            #pepor = cheese.loc(pizza)
-            #print(pepor)
-            #print(datCopy.sort(), ascending=True)
-            #if temp[1]==self.tuples:
-                #print(self.tuples)
-                #cheese = pizza.sort_values(self.tuples)
             
         self.busStation()
         
