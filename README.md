@@ -17,7 +17,7 @@
 >
 > Example: python main.py ~/QuoraTrendAnalyzer/SampleData/whitehouse.csv
 >
-> Note: this is written in Python 3
+<p> Note: this is written in Python 3 </p>
 
 
 <h3> Documentation notes </h3>
