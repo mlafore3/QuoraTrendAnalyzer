@@ -17,7 +17,7 @@ class parseClass:
         self.datanp = []
     
     def __str__(self):
-        return("Data dimensions", self.dataShape,"Header", self.headers)
+        return("Data dimensions", self.dataShape,"Header", self.colHeader)
         
                         
         
@@ -33,6 +33,8 @@ class parseClass:
             index = pd.MultiIndex.from_tuples(self.tuples)
             self.sensitiveData = [x[0] for x in self.tuples if "SEN" in x[1]]
             self.colHeader = [x[0] for x in self.tuples]
+            print("INDEX", index)
+            
             
             for row in csvData:
                 self.data.append(row)
@@ -71,7 +73,7 @@ class parseClass:
         
         print()
         print()
-        print("sample, interrogate or exit " )
+        print("sample, interrogate, sort, write or exit " )
         print()
         function = []
         function = input("What do you want to do? ")
@@ -84,7 +86,7 @@ class parseClass:
             elif function=="sample":
                 self.sampleData()
             elif function=="sort":
-                self.sort()
+                self.sortData()
             elif function=="write":
                 self.writeCSV()
             else:
@@ -119,32 +121,46 @@ class parseClass:
             pizza = datCopy.ix[:,temp]
             cheese = pizza.apply(lambda x: x.value_counts()).T.stack()
             print(cheese)
-        else:
-            self.interrogateColumn()
+        
         self.interrogateColumn()
-        
-        #s = set(self.colHeader)
-       # while function is not None:
-            #if function=="write":
-                #self.writeCSV()
-
-        
-    def sort(self):
+                
+    def sortData(self):
         print()
         print()
         print('Column names are: ')
         s = set(self.sensitiveData) 
         show = [x.replace(" ","") for x in self.colHeader if x not in s]
         print(show)
-        temp = input("Which column(s) do you want to interrogate ? ")
+        temp = input("Put the data column you want sorted by as your first argument ! ")
         temp = temp.split()
+        #print("tupules", self.tuples)
+        #test = [self.tuples for temp[0] in self.tuples]
+        #test = [temp for self.tuples in temp]
+        #lis=[]
+        #for self.tuples in temp:
+            #lis.append(self.tuples)
         
-        datCopy = self.data
-        datCopy= datCopy.rename(columns=lambda x: x.replace(" ", ""))        
-        pizza = datCopy.ix[:,temp]
-        cheese = pizza.apply(lambda x: x.value_counts()).T.stack()
-        print(cheese)
-        
+        if list(set(temp).intersection(show)):
+            datCopy = self.data
+            datCopy= datCopy.rename(columns=lambda x: x.replace(" ", "")) 
+            cheese=datCopy[temp]
+            pizza = cheese[temp].columns.get_level_values(0)
+            pizza = cheese.columns.values
+            #temp1 = datCopy.xs(temp, axis=1)
+            #print(temp)
+            pizza = pizza.tolist()
+                
+            cot = cheese.sort_values(by=pizza, ascending=True)
+            print(cot)
+            #for set(pizza) in set(self.tuples):
+                #print(pizza)
+            #pepor = cheese.loc(pizza)
+            #print(pepor)
+            #print(datCopy.sort(), ascending=True)
+            #if temp[1]==self.tuples:
+                #print(self.tuples)
+                #cheese = pizza.sort_values(self.tuples)
+            
         self.busStation()
         
     def writeCSV(self):
