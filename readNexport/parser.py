@@ -61,7 +61,7 @@ class parseClass:
         print()
         print()
 
-        #self.conNplot()
+        self.conNplot()
     
     def conNplot(self):
         
@@ -155,54 +155,76 @@ class parseClass:
         slick = slick.split()
         sly =input("Type the column you want to order by or none ? ")
         sly = sly.split()
-        important_question = input("Would you like to sample before printing ? ")
+        important_question = input("Would you like to see the top of your dataframe before printing ? ")
         important_question = important_question.split()
         
         
-                
-                
-        
-        
-        
-        
+#Funnelling responses for output file the user desires 
+####There has to be a better way to do this
         
         if "all" in slick:
             datCopy = self.data
             datCopy= datCopy.rename(columns=lambda x: x.replace(" ", "")) 
+            
             if list(set(sly).intersection(show)):
+                cheese=datCopy[sly]
                 pizza = cheese.columns.values
-                pizza = pizza.list()
-                pinap = cheese.sort_values(by=pizza, acending=True)
+                pizza = pizza.tolist()
+                pinap = datCopy.sort_values(by=pizza, ascending=True)
+                
                 if "yes" in important_question:
-                    print(pinap.sample(n=10))
+                    print(pinap.head(n=10))
                     question = input("Do you still want to print file ? ")
+                    
                     if "yes" in question:
-                        pinap.to_csv("pinapTest.csv")
+                        pinap.to_csv("exports/output.csv")
+                        self.busStation()
                     else:
                         self.busStation()
                 else:
-                    pinap.to_csv("pinapTest.csv")
+                    pinap.to_csv("exports/output.csv")
+                    self.busStation()
             else:
-                print("HIIIIIII")
-                datCopy.to_csv("datCopytest.csv")
+                
+                if "yes" in important_question:
+                    print(datCopy.head(n=10))
+                    question = input("Do you still want to print file ? ")
+                    
+                    if "yes" in question:
+                        datCopy.to_csv("exports/output.csv")
+                        self.busStation()
+                    else:
+                        self.busStation()
+                else:
+                    datCopy.to_csv("exports/output.csv")
+                    self.busStation()
+                
+    
         elif list(set(slick).intersection(show)):
             datCopy = self.data
             datCopy= datCopy.rename(columns=lambda x: x.replace(" ", ""))        
             cheese = datCopy[slick]
+            
             if list(set(sly).intersection(show)):
-                pizza = cheese.columns.values
-                pizza = pizza.list()
-                pinap = cheese.sort_values(by=pizza, acending=True)
+                cheesey=cheese[sly]
+                pizza = cheesey.columns.values
+                pizza = pizza.tolist()
+                pinap = cheese.sort_values(by=pizza, ascending=True)
+                
                 if "yes" in important_question:
-                    print(pinap.sample(n=10))
+                    print(pinap.head(n=10))
                     question = input("Do you still want to print file ? ")
+                    
                     if "yes" in question:
-                        pinap.to_csv("test.csv")
+                        pinap.to_csv("exports/output.csv")
+                        self.busStation()
                     else:
                         self.busStation()
                 else:
-                    pinap.to_csv("test.csv")
+                    pinap.to_csv("exports/output.csv")
+                    self.busStation()
             else:
-                cheese.to_csv("cheese.csv")
+                cheese.to_csv("exports/output.csv")
+                self.busStation()
         else:
             self.busStation()
