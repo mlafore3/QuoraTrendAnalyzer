@@ -2,8 +2,7 @@ import numpy as np
 import pandas as pd 
 import csv
 from . import convert
-from sys import argv
-import re
+
 
 class parseClass:
     
@@ -58,6 +57,7 @@ class parseClass:
         print('Take a moment to review the plots in the export folder. These show the diversity of information found within each data column.')
         print('ID and Category Columns have been reduced to their first character.')  
         print('Sensitive information has been converted to numbers.') 
+        print('At this time, this program does not support plots of Time categories')
         print()
         print()
 
@@ -122,7 +122,7 @@ class parseClass:
             cheese = pizza.apply(lambda x: x.value_counts()).T.stack()
             print(cheese)
         
-        self.interrogateColumn()
+        self.busStation()
                 
     def sortData(self):
         print()
