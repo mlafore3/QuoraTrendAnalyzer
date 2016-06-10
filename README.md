@@ -22,6 +22,9 @@
 <p> This program takes in a file with the first row being column IDs and the second row being datatypes. There are columns that possess sensitive information which are not aloud to be accessed. The program first plots columns variation of the file followed by the option to interrogate, write, sample or sort the file. </p>
 
 > sample - prints a random sample of the dataset
+>
 > interrogate - asks for column(s) to report the most and least frequent values
+>
 > sort - sorts data using specified column 
+>
 > write - writes a new dataset with the option of deleting columns or being sorted by a column 
