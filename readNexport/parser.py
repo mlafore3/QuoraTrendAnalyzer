@@ -33,7 +33,7 @@ class parseClass:
             index = pd.MultiIndex.from_tuples(self.tuples)
             self.sensitiveData = [x[0] for x in self.tuples if "SEN" in x[1]]
             self.colHeader = [x[0] for x in self.tuples]
-            print("INDEX", index)
+            #print("INDEX", index)
             
             
             for row in csvData:
@@ -141,16 +141,68 @@ class parseClass:
             cheese=datCopy[temp]
             pizza = cheese.columns.values
             pizza = pizza.tolist()
-            cot = cheese.sort_values(by=pizza, ascending=True)
-            print(cot)
+            pinap = cheese.sort_values(by=pizza, ascending=True)
+            print(pinap)
             
         self.busStation()
         
     def writeCSV(self):
-        d = convert.convertClass(self.data)
-        self.busStation()
-    
-
-
-            
+        print()
+        print()
+        s = set(self.sensitiveData)
+        show = [x.replace(" ","") for x in self.colHeader if x not in s]
+        slick=input("Type the columns you would like in your output or all ? ")
+        slick = slick.split()
+        sly =input("Type the column you want to order by or none ? ")
+        sly = sly.split()
+        important_question = input("Would you like to sample before printing ? ")
+        important_question = important_question.split()
         
+        
+                
+                
+        
+        
+        
+        
+        
+        if "all" in slick:
+            datCopy = self.data
+            datCopy= datCopy.rename(columns=lambda x: x.replace(" ", "")) 
+            if list(set(sly).intersection(show)):
+                pizza = cheese.columns.values
+                pizza = pizza.list()
+                pinap = cheese.sort_values(by=pizza, acending=True)
+                if "yes" in important_question:
+                    print(pinap.sample(n=10))
+                    question = input("Do you still want to print file ? ")
+                    if "yes" in question:
+                        pinap.to_csv("pinapTest.csv")
+                    else:
+                        self.busStation()
+                else:
+                    pinap.to_csv("pinapTest.csv")
+            else:
+                print("HIIIIIII")
+                datCopy.to_csv("datCopytest.csv")
+        elif list(set(slick).intersection(show)):
+            datCopy = self.data
+            datCopy= datCopy.rename(columns=lambda x: x.replace(" ", ""))        
+            cheese = datCopy[slick]
+            if list(set(sly).intersection(show)):
+                pizza = cheese.columns.values
+                pizza = pizza.list()
+                pinap = cheese.sort_values(by=pizza, acending=True)
+                if "yes" in important_question:
+                    print(pinap.sample(n=10))
+                    question = input("Do you still want to print file ? ")
+                    if "yes" in question:
+                        pinap.to_csv("test.csv")
+                    else:
+                        self.busStation()
+                else:
+                    pinap.to_csv("test.csv")
+            else:
+                cheese.to_csv("cheese.csv")
+        else:
+            self.busStation()
