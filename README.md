@@ -10,11 +10,12 @@
 
 >Clone the respository and inside the root folder run
 >
->python main.py ~/filepath/filename.csv
+>python main.py ~/filepath_to_respository_folder/SampleData/filename.csv
 >
 >
 > The whitehouse.csv and hospital.csv are the best testing files given, as airquality was not of the proper format. 
 >
+> Example: python main.py ~/QuoraTrendAnalyzer/SampleData/whitehouse.csv
 > Note: this is written in Python 3
 
 
