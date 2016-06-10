@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import os 
 from . import exporter
 
-class convertNplot:
+class convertClass:
     
     def __init__(self, data):
         self.data = data
@@ -28,5 +28,7 @@ class convertNplot:
             sns_plot = sns.countplot(x=dat1)
             sns_plot = sns_plot.get_figure()
             sns_plot.savefig("exports/"+i+".png")
+    
+    
             
 
