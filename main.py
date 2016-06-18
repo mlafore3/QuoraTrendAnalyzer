@@ -1,6 +1,6 @@
 import sys
 import os
-from Methods import parser, analyzeNexport, convert
+from Library import parser, analyzeNexport, convert
 
 #This method takes in a filepath argument and creates an parser class
 #from the readNexport bin. This class activates the necessary prompts 
